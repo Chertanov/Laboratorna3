@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #datet1,#datet2,#datet3,#datet4,#datet5{
+            width: 165px;
+        }
+        #flexdiv{
+            display:flex;
+            justify-content: space-between;
+        }
+        #flexdiv > div{
+            background-color: #f1f1f1;
+            margin: 10px;
+            font-size: 15px;
+        }
+    </style>
+    <script>
+        function human(name, age){
+            this.name = name;
+            this.age = age;
+        }
+        function student(averageMark){
+            this.averageMark = averageMark;
+        }
+        var sample = new human("Ivan",56);
+        student.prototype = sample;
+        var stud = new student(5);
+        //console.log(stud);
+        console.dir(window);
+        var item = new Date();
+        window.alert(item.getDate());
+
+        function getInput(nId,hId,nP, hP){
+            document.getElementById(nP).innerHTML = "Name: " + document.getElementById(nId).value;
+            let tt = new Date(document.getElementById(hId).value);
+            let ti = new Date();
+            let diff = new Date(ti-tt)
+            if (isNaN(diff.getFullYear())){
+                document.getElementById(hP).innerHTML = "No date found"
+                return;
+            }
+            let years = "";
+            if (Math.abs(diff.getFullYear()-1970)==1){
+                years = (diff.getFullYear()-1970) + " year";
+            }else{
+                years = (diff.getFullYear()-1970) + " years";
+            }
+            document.getElementById(hP).innerHTML = "Work experience: " + years;
+        }
+        function getAverage(){
+            let ti = new Date();
+            let tt = new Date;
+            let diff = 0;
+            for(let i in [0,1,2,3,4]){
+                let tt = new Date(document.forms[i].elements[1].value);
+                if(isNaN(tt)){
+                    continue;
+                }
+                diff += new Date(ti-tt).getFullYear()-1970;
+            }
+            diff = Math.floor(diff/5);
+            if (Math.abs(diff)==1){
+                years = (diff) + " year";
+            }else{
+                years = (diff) + " years";
+            }
+            document.getElementById("avage").innerHTML = "Work experience: " + years;
+        }
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="flexdiv">
+        <div>
+            <p style="font-size:large; text-align: center;"><b>Worker 1</b></p>
+            <form action="#">
+                <input id="name1" type="text">
+                <label for="name1">SecondName</label></br></br>
+                <input id="datet1" type="date">
+                <label for="datet1">HireDate</label></br></br>
+                <button onClick="getInput('name1','datet1','nameout1','year1');">Check worktime</button>
+            </form>
+            <p id="nameout1"></p>
+            <p id="year1"></p>
+        </div>
+        <div>
+            <p style="font-size:large; text-align: center;"><b>Worker 2</b></p>
+            <form action="#">
+                <input id="name2" type="text">
+                <label for="name2">SecondName</label></br></br>
+                <input id="datet2" type="date">
+                <label for="datet2">HireDate</label></br></br>
+                <button onClick="getInput('name2','datet2','nameout2','year2');">Check worktime</button>
+            </form>
+            <p id="nameout2"></p>
+            <p id="year2"></p>
+        </div>
+        <div>
+            <p style="font-size:large; text-align: center;"><b>Worker 3</b></p>
+            <form action="#">
+                <input id="name3" type="text">
+                <label for="name3">SecondName</label></br></br>
+                <input id="datet3" type="date">
+                <label for="datet3">HireDate</label></br></br>
+                <button onClick="getInput('name3','datet3','nameout3','year3');">Check worktime</button>
+            </form>
+            <p id="nameout3"></p>
+            <p id="year3"></p>
+        </div>
+        <div>
+            <p style="font-size:large; text-align: center;"><b>Worker 4</b></p>
+            <form action="#">
+                <input id="name4" type="text">
+                <label for="name4">SecondName</label></br></br>
+                <input id="datet4" type="date">
+                <label for="datet4">HireDate</label></br></br>
+                <button onClick="getInput('name4','datet4','nameout4','year4');">Check worktime</button>
+            </form>
+            <p id="nameout4"></p>
+            <p id="year4"></p>
+        </div>
+        <div>
+            <p style="font-size:large; text-align: center;"><b>Worker 5</b></p>
+            <form action="#">
+                <input id="name5" type="text">
+                <label for="name5">SecondName</label></br></br>
+                <input id="datet5" type="date">
+                <label for="datet5">HireDate</label></br></br>
+                <button onClick="getInput('name5','datet5','nameout5','year5');">Check worktime</button>
+            </form>
+            <p id="nameout5"></p>
+            <p id="year5"></p>
+        </div>
+    </div>
+    <button onClick="getAverage()">Get average experience</button>
+    <p id="avage"></p>
+</body>
+</html>
